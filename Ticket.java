@@ -1,5 +1,11 @@
 import java.time.LocalDate;
 
+/**
+ * Clase Ticket.
+ * Representa un ticket de soporte dentro del sistema de gestion.
+ * Almacena los datos del problema reportado, el solicitante, la prioridad
+ * de atencion y las fechas de creacion y resolucion del ticket.
+ */
 public class Ticket {
 
     //Atributos.
@@ -7,63 +13,90 @@ public class Ticket {
     private int id;
     private String descripcion;
     private String nombreCompleto;
-    private String fechaCreacion;
-    private String fechaResolucion;
+    private int prioridad;
+    private LocalDate fechaCreacion;
+    private LocalDate fechaResolucion;
 
     //Constructor.
-    public Ticket(String descripcion, String nombreCompleto) {
+    // Crea un ticket con ID automatico, fecha de creacion actual y sin resolver.
+    public Ticket(String descripcion, String nombreCompleto, int prioridad) {
         this.id = ++cantidad;
         this.descripcion = descripcion;
         this.nombreCompleto = nombreCompleto;
-        this.fechaCreacion = LocalDate.now().toString();
+        this.prioridad = prioridad;
+        this.fechaCreacion = LocalDate.now();
         this.fechaResolucion = null;
     }
 
     //Getters.
+    // Devuelve el ID del ticket.
     public int getId() {
         return id;
     }
 
+    // Devuelve la descripcion del problema.
     public String getDescripcion() {
         return descripcion;
     }
 
+    // Devuelve el nombre completo del solicitante.
     public String getNombreCompleto() {
         return nombreCompleto;
     }
 
-    public String getFechaCreacion() {
+    // Devuelve la prioridad del ticket.
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    // Devuelve la fecha de creacion del ticket.
+    public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public String getFechaResolucion() {
+    // Devuelve la fecha de resolucion del ticket.
+    public LocalDate getFechaResolucion() {
         return fechaResolucion;
     }
 
     //Setters.
+    // Asigna el ID del ticket.
     public void setId(int id) {
         this.id = id;
     }
 
+    // Asigna la descripcion del problema.
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    // Asigna el nombre completo del solicitante.
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    // Asigna la prioridad del ticket.
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    // Asigna la fecha de creacion del ticket.
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public void setFechaResolucion(String fechaResolucion) {
+    // Asigna la fecha de resolucion del ticket.
+    public void setFechaResolucion(LocalDate fechaResolucion) {
         this.fechaResolucion = fechaResolucion;
     }
 
     //Métodos.
+    // Devuelve una representacion en texto del ticket.
     @Override
     public String toString() {
-        return "Ticket [id=" + id + ", descripcion=" + descripcion + ", nombreCompleto=" + nombreCompleto + ", fechaCreacion=" + fechaCreacion + ", fechaResolucion=" + fechaResolucion + "]";
+        return "Ticket [id=" + id + ", descripcion=" + descripcion + ", nombreCompleto=" + nombreCompleto
+                + ", prioridad=" + prioridad
+                + ", fechaCreacion=" + fechaCreacion.toString()
+                + ", fechaResolucion=" + (fechaResolucion == null ? "null" : fechaResolucion.toString()) + "]";
     }
 }
